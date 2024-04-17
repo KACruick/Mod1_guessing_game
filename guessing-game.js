@@ -11,24 +11,22 @@ const rl = readline.createInterface({
 // const secretNumber = randomInRange(minRange, maxRange)
 
 function randomInRange(min, max) {
-
-    return Math.floor(Math.random() * (max - min) + min);
-    // function getRandomIntInclusive(min, max) {
-    //     const minCeiled = Math.ceil(min);
-    //     const maxFloored = Math.floor(max);
-    //     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
-    //   }
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
+console.log(randomInRange(3,4));
 
 const askRange = () => {
-    rl.question("Enter a min number", + (minAnswer) => {
+    rl.question("Enter a min number ", + (minAnswer) => {
         const min = Number(minAnswer);
-        rl.question("Enter a max number", + (maxAnswer) => {
+        rl.question("Enter a max number ", + (maxAnswer) => {
             const max = Number(maxAnswer);
             console.log("I'm think of a number between " + min + " and " + max);
         });
     });
-    
+    let secretNumber = randomInRange(minAnswer,maxAnswer);
+    return secretNumber;
 }
 
 
