@@ -1,13 +1,14 @@
 const readline = require('readline');
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-let minRange = 0;
-let maxRange = 100;
+// let minRange = 0;
+// let maxRange = 100;
 
-const secretNumber = randomInRange(minRange, maxRange)
+// const secretNumber = randomInRange(minRange, maxRange)
 
 function randomInRange(min, max) {
 
@@ -27,8 +28,7 @@ const askRange = () => {
             console.log("I'm think of a number between " + min + " and " + max);
         });
     });
-
-    return (min, max);
+    
 }
 
 
