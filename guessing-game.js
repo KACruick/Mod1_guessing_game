@@ -8,44 +8,46 @@ const rl = readline.createInterface({
 // let minRange = 0;
 // let maxRange = 100;
 
-// const secretNumber = randomInRange(minRange, maxRange)
+let secretNumber;
 
 function randomInRange(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
-console.log(randomInRange(3,4));
+//console.log(randomInRange(3,4));
 
-const askRange = () => {
-    rl.question("Enter a min number ", + (minAnswer) => {
+// const askRange = () => {
+//     rl.question("Enter a min number ", (minAnswer) => {
+//         const min = Number(minAnswer);
+//         rl.question("Enter a max number ", (maxAnswer) => {
+//             const max = Number(maxAnswer);
+//             console.log("I'm think of a number between " + min + " and " + max);
+//         });
+//     });
+//     let secretNumber = randomInRange(minAnswer,maxAnswer);
+//     askGuess(secretNumber);
+// }
+
+
+function askRange() {
+    rl.question('Enter a min number: ', (minAnswer) => {
         const min = Number(minAnswer);
-        rl.question("Enter a max number ", + (maxAnswer) => {
+        rl.question('Enter a max number: ', (maxAnswer) => {
             const max = Number(maxAnswer);
-            console.log("I'm think of a number between " + min + " and " + max);
+            console.log("I'm thinking of a number between " + min + " and " + max);
+            secretNumber = randomInRange(min, max);
+            askGuess(secretNumber);
+            
         });
     });
-    let secretNumber = randomInRange(minAnswer,maxAnswer);
-    return secretNumber;
 }
 
+askRange();
 
+let numAttempts;
 
-// Const handleFirstQuestion = (answer) => {
-// 	console.log(“hello” + answer);
-// 	rl.question(“Where are you from?”, handleSecondQuestion);
-// };
-
-//  Const handleSecondQuestion = (answer) => {
-// 	console.log(answer + “ is a great place!”);
-// 	rl.question(“How are you doing? ”, handleThirdQuestion);
-// };
-
-//rl.question(“What is your name? “, handleFirstQuestion);
-
-
-
-function checkGuess(number) {
+function checkGuess(number) {   //if 
     if(number > secretNumber){
     console.log('Too high.');
     return false;
@@ -59,7 +61,7 @@ function checkGuess(number) {
 }
 
 function askGuess(){
-    rl.question('Enter a guess: ', (answer) => {
+    rl.question('Enter a guess: ',(answer) => {
         const guess = Number(answer);
         const isCorrect = checkGuess(guess);
 
