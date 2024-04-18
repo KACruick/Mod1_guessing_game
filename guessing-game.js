@@ -29,6 +29,7 @@ function randomInRange(min, max) {
 //     askGuess(secretNumber);
 // }
 
+let numAttempts;
 
 function askRange() {
     rl.question('Enter a min number: ', (minAnswer) => {
@@ -43,9 +44,19 @@ function askRange() {
     });
 }
 
-askRange();
+//askRange();
 
-let numAttempts;
+
+function askLimit() {
+//allow user to specify the number of attempts
+//potential order: askLimit, askRange, askGuess
+    rl.question("Enter how many guesses are allowed: ", (answer) => {
+        numAttempts = answer;
+        askRange();
+    });
+    
+}
+askLimit();
 
 function checkGuess(number) {   //if 
     if(number > secretNumber){
@@ -60,19 +71,27 @@ function checkGuess(number) {   //if
     }
 }
 
-function askGuess(){
+function askGuess(){ 
+
     rl.question('Enter a guess: ',(answer) => {
         const guess = Number(answer);
         const isCorrect = checkGuess(guess);
 
-        if (isCorrect){
+        if (isCorrect == true){
             console.log('You win!');
             rl.close();
-        }else {
+        } 
+        if (isCorrect == false && numAttempts > 1) {
             askGuess();
+            numAttempts --;
+        }
+        else {
+            rl.close();
+            console.log("Too many guesses. You lose");
         }
     });
-}
+    
+}  
 
 
 //askGuess();
